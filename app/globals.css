@@ -1,0 +1,144 @@
+@import 'tailwindcss'; 
+
+@theme {
+  --color-sand: #C4A882;
+  --color-sand-light: #E8D9C0;
+  --color-sand-dark: #A08060;
+  --color-brown: #3D1F0A;
+  --color-gold: #D28744;
+  --color-gold-light: #E8A85C;
+  --color-cream: #F5ECD8;
+  --color-cream-dark: #EDD9BE;
+
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --font-montserrat: 'Montserrat', system-ui, sans-serif;
+  --font-dancing: 'Dancing Script', cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-montserrat);
+  background-color: var(--color-cream);
+  color: var(--color-brown);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sand-dark);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Arch image clip */
+.arch-clip {
+  clip-path: ellipse(50% 55% at 50% 45%);
+}
+
+/* Arch container */
+.arch-container {
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  overflow: hidden;
+}
+
+/* Gold shimmer animation */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-gold) 0%,
+    var(--color-gold-light) 50%,
+    var(--color-gold) 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Grain texture overlay */
+.grain-overlay {
+  position: relative;
+}
+.grain-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Hero parallax */
+.parallax-bg {
+  will-change: transform;
+}
+
+/* Section decorative line */
+.decorative-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  margin: 0 auto;
+}
+
+/* Dashed partner card */
+.partner-card {
+  border: 2px dashed var(--color-sand);
+  background: rgba(196, 168, 130, 0.08);
+  transition: all 0.3s ease;
+}
+.partner-card:hover {
+  border-color: var(--color-gold);
+  background: rgba(210, 135, 68, 0.06);
+}
+
+/* Input focus styles */
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 0 0 3px rgba(210, 135, 68, 0.15);
+}
+
+/* Ticket card selected */
+.ticket-recommended {
+  background: linear-gradient(135deg, var(--color-brown) 0%, #5C3019 100%);
+}
+
+/* Section transition background */
+.wave-divider {
+  line-height: 0;
+}
