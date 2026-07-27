@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { MapPin, Calendar, Send, Camera } from 'lucide-react'
 
@@ -238,23 +239,35 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* Bottom bar */}
         <div
-          className="mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="mt-12 pt-8 flex flex-col items-center sm:items-start gap-4"
           style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
         >
-          <p
-            className="text-xs font-light text-center sm:text-left"
-            style={{ fontFamily: 'var(--font-montserrat)', color: 'rgba(196,168,130,0.5)' }}
+          <div 
+            className="w-full text-center text-xs font-light flex flex-col gap-2"
+            style={{ fontFamily: 'var(--font-montserrat)', color: 'rgba(196,168,130,0.6)' }}
           >
-            © 2026 Тихая Роскошь. Все права защищены.
-          </p>
+            <p>ООО "АИР МЕДИА" | ИНН 0278993841 | ОГРН 1260200010784</p>
+            <div className="flex items-center justify-center gap-4 mt-2">
+              <Link href="/offer" className="hover:text-[rgba(210,135,68,0.8)] transition-colors underline underline-offset-4 decoration-white/20">Публичная оферта</Link>
+              <Link href="/privacy" className="hover:text-[rgba(210,135,68,0.8)] transition-colors underline underline-offset-4 decoration-white/20">Политика конфиденциальности</Link>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.04)' }}>
+            <p
+              className="text-xs font-light text-center sm:text-left"
+              style={{ fontFamily: 'var(--font-montserrat)', color: 'rgba(196,168,130,0.5)' }}
+            >
+              © 2026 Тихая Роскошь. Все права защищены.
+            </p>
           <p
             className="text-xs font-light italic"
             style={{ fontFamily: 'var(--font-cormorant)', color: 'rgba(196,168,130,0.4)', fontSize: '1rem' }}
           >
             Сделано с любовью ♥
           </p>
+        </div>
         </div>
       </div>
     </footer>
