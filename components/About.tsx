@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { Leaf, Music, Layers, Users, Sparkles } from 'lucide-react'
+import { Leaf, Music, Layers, Users, Sparkles, Smile, Wheat } from 'lucide-react'
 
 const values = [
   { icon: Leaf, label: 'Природа' },
@@ -10,6 +10,8 @@ const values = [
   { icon: Layers, label: 'Практики' },
   { icon: Users, label: 'Общение' },
   { icon: Sparkles, label: 'Праздник жизни' },
+  { icon: Smile, label: 'Танцы' },
+  { icon: Wheat, label: 'Фермерские угощения' },
 ]
 
 const fadeUp = {
@@ -163,14 +165,14 @@ export default function About() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-6 sm:gap-10"
+          className="flex flex-wrap justify-center items-start gap-6 sm:gap-10"
         >
           {values.map((v, i) => (
             <motion.div
               key={v.label}
               variants={fadeUp}
               transition={{ duration: 0.6, delay: 0.4 + i * 0.08 }}
-              className="flex flex-col items-center gap-3 group"
+              className="flex flex-col items-center gap-3 group w-[100px] sm:w-[120px]"
             >
               <div
                 className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"

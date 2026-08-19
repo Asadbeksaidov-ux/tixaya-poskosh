@@ -3,13 +3,15 @@
 import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { Music, Waves, Flame, Leaf, User, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Music, Waves, Flame, Leaf, User, ChevronLeft, ChevronRight, BookOpen, Store } from 'lucide-react'
 
 const features = [
   { icon: Music, label: 'Живая и электронная музыка' },
   { icon: Waves, label: 'Конная фиерия' },
   { icon: Flame, label: 'Чайные церемонии и саундхилинг' },
   { icon: Leaf, label: 'Йога и телесные практики' },
+  { icon: BookOpen, label: 'Лекции' },
+  { icon: Store, label: 'Ярмарка мастеров' },
 ]
 
 export default function Hero() {
@@ -260,14 +262,14 @@ export default function Hero() {
         >
           Фестиваль празднования Жизни · 1000–1200 человек
         </p>
-        <div className="flex justify-center gap-4 sm:gap-8 flex-wrap">
+        <div className="flex justify-center items-start gap-4 sm:gap-8 flex-wrap">
           {features.map((f, i) => (
             <motion.div
               key={f.label}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 + i * 0.1 }}
-              className="flex flex-col items-center gap-3 group max-w-[100px]"
+              className="flex flex-col items-center gap-3 group w-[90px] sm:w-[110px]"
             >
               <div
                 className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-500 group-hover:scale-110"

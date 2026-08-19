@@ -4,13 +4,14 @@ interface EmailPayload {
   email: string
   promo?: string
   tier?: string
+  wishes?: string
 }
 
 const tierLabels: Record<string, string> = {
   free: 'Входной (0 ₽)',
-  full: 'Полный (15 555 ₽)',
-  vip: 'VIP (55 555 ₽)',
-  premium: 'Премиум (111 111 ₽)',
+  full: 'Полный (7 777 ₽)',
+  vip: 'VIP (39 990 ₽)',
+  premium: 'Премиум (88 888 ₽)',
 }
 
 function buildHtmlEmail(payload: EmailPayload): string {
@@ -69,6 +70,14 @@ function buildHtmlEmail(payload: EmailPayload): string {
                   ? `<tr><td style="padding:10px 0;">
                       <p style="margin:0;color:#A08060;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;">Промокод</p>
                       <p style="margin:4px 0 0;color:#D28744;font-size:16px;font-weight:600;">${payload.promo}</p>
+                     </td></tr>`
+                  : ''
+              }
+              ${
+                payload.wishes
+                  ? `<tr><td style="padding:10px 0;border-top:1px solid rgba(196,168,130,0.2);">
+                      <p style="margin:0;color:#A08060;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;">Пожелания</p>
+                      <p style="margin:4px 0 0;color:#3D1F0A;font-size:14px;line-height:1.5;">${payload.wishes}</p>
                      </td></tr>`
                   : ''
               }

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { MapPin, Calendar, Send, Camera } from 'lucide-react'
+import { MapPin, Calendar, Send } from 'lucide-react'
 
 const navLinks = [
   { href: '#about', label: 'О фестивале' },
@@ -17,7 +17,18 @@ const navLinks = [
 function TelegramIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.18l-2.03 9.56c-.15.67-.54.83-1.08.52l-3-2.21-1.45 1.4c-.16.16-.3.3-.61.3l.21-3.06L16.24 9.3c.23-.2-.05-.32-.36-.12l-6.53 4.11-2.81-.88c-.61-.19-.62-.61.13-.9l10.96-4.23c.51-.19.96.12.8.9z"/>
+      <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.94 8.18l-2.03 9.56c-.15.67-.54.83-1.08.52l-3-2.21-1.45 1.4c-.16.16-.3.3-.61.3l.21-3.06L16.24 9.3c.23-.2-.05-.32-.36-.12l-6.53 4.11-2.81-.88c-.61-.19-.62-.61.13-.9l10.96-4.23c.51-.19.96.12.8.9z" />
+    </svg>
+  )
+}
+
+// Instagram icon SVG component
+function InstagramIcon({ size = 20 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
     </svg>
   )
 }
@@ -26,7 +37,7 @@ function TelegramIcon({ size = 20 }: { size?: number }) {
 function VkIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2zm3.08 13.5h-1.65c-.62 0-.81-.49-1.93-1.62-1-.93-1.43-.95-1.67-.95-.34 0-.44.1-.44.57v1.47c0 .41-.13.65-1.22.65-1.79 0-3.78-1.09-5.18-3.12C4.37 10.28 3.83 8.3 3.83 8c0-.24.1-.46.57-.46h1.65c.43 0 .59.2.75.65.83 2.4 2.22 4.5 2.79 4.5.21 0 .31-.1.31-.65V9.54c-.07-1.16-.68-1.26-.68-1.67 0-.2.16-.4.42-.4h2.6c.36 0 .49.19.49.61v3.27c0 .36.16.49.27.49.21 0 .4-.13.8-.53C14.72 10.52 15.88 8 15.88 8c.12-.23.34-.44.76-.44h1.65c.49 0 .6.25.49.61-.2 1-2.2 3.76-2.2 3.76-.17.28-.24.4 0 .71.17.23.74.73 1.12 1.17.69.78 1.22 1.43 1.36 1.88.15.44-.08.67-.51.67z"/>
+      <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2zm3.08 13.5h-1.65c-.62 0-.81-.49-1.93-1.62-1-.93-1.43-.95-1.67-.95-.34 0-.44.1-.44.57v1.47c0 .41-.13.65-1.22.65-1.79 0-3.78-1.09-5.18-3.12C4.37 10.28 3.83 8.3 3.83 8c0-.24.1-.46.57-.46h1.65c.43 0 .59.2.75.65.83 2.4 2.22 4.5 2.79 4.5.21 0 .31-.1.31-.65V9.54c-.07-1.16-.68-1.26-.68-1.67 0-.2.16-.4.42-.4h2.6c.36 0 .49.19.49.61v3.27c0 .36.16.49.27.49.21 0 .4-.13.8-.53C14.72 10.52 15.88 8 15.88 8c.12-.23.34-.44.76-.44h1.65c.49 0 .6.25.49.61-.2 1-2.2 3.76-2.2 3.76-.17.28-.24.4 0 .71.17.23.74.73 1.12 1.17.69.78 1.22 1.43 1.36 1.88.15.44-.08.67-.51.67z" />
     </svg>
   )
 }
@@ -41,8 +52,8 @@ const socialLinks = [
   {
     id: 'instagram',
     label: 'Instagram',
-    href: 'https://instagram.com/tixaya_roskosh',
-    icon: Camera,
+    href: 'https://www.instagram.com/tihaya_roskosh_fest?igsh=bDgxcG00d3A2ZDc1',
+    icon: InstagramIcon,
   },
 
   {
@@ -86,12 +97,12 @@ export default function Footer() {
             className="sm:col-span-2 lg:col-span-1"
           >
             <Image
-            src="/images/logo-transparent.png"
-            alt="Тихая Роскошь"
-            width={160}
-            height={72}
-            className="mb-4 object-contain opacity-90 brightness-[10] saturate-0"
-          />
+              src="/images/logo-transparent.png"
+              alt="Тихая Роскошь"
+              width={160}
+              height={72}
+              className="mb-4 object-contain opacity-90 brightness-[10] saturate-0"
+            />
             <p
               className="text-base font-light italic leading-relaxed"
               style={{ fontFamily: 'var(--font-cormorant)', color: 'rgba(232,217,192,0.8)', fontSize: '1.05rem' }}
@@ -243,7 +254,7 @@ export default function Footer() {
           className="mt-12 pt-8 flex flex-col items-center sm:items-start gap-4"
           style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
         >
-          <div 
+          <div
             className="w-full text-center text-xs font-light flex flex-col gap-2"
             style={{ fontFamily: 'var(--font-montserrat)', color: 'rgba(196,168,130,0.6)' }}
           >
@@ -261,13 +272,13 @@ export default function Footer() {
             >
               © 2026 Тихая Роскошь. Все права защищены.
             </p>
-          <p
-            className="text-xs font-light italic"
-            style={{ fontFamily: 'var(--font-cormorant)', color: 'rgba(196,168,130,0.4)', fontSize: '1rem' }}
-          >
-            Сделано с любовью ♥
-          </p>
-        </div>
+            <p
+              className="text-xs font-light italic"
+              style={{ fontFamily: 'var(--font-cormorant)', color: 'rgba(196,168,130,0.4)', fontSize: '1rem' }}
+            >
+              Сделано с любовью ♥
+            </p>
+          </div>
         </div>
       </div>
     </footer>

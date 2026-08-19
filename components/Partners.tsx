@@ -2,8 +2,16 @@
 
 import { motion } from 'framer-motion'
 
-const partners = Array.from({ length: 6 }, (_, i) => i + 1)
+import Image from 'next/image'
 
+const partners = [
+  { name: 'ЭКЗАРХО', logo: '/images/Ekzerho_Logo-02.png', type: 'Партнёр фестиваля' },
+  { name: 'Ваш бренд', logo: null, type: 'Партнёр фестиваля' },
+  { name: 'Ваш бренд', logo: null, type: 'Партнёр фестиваля' },
+  { name: 'Ваш бренд', logo: null, type: 'Партнёр фестиваля' },
+  { name: 'Ваш бренд', logo: null, type: 'Партнёр фестиваля' },
+  { name: 'Ваш бренд', logo: null, type: 'Партнёр фестиваля' },
+]
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0 },
@@ -65,7 +73,7 @@ export default function Partners() {
 
         {/* Partner grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 md:gap-8">
-          {partners.map((i) => (
+          {partners.map((partner, i) => (
             <motion.div
               key={i}
               variants={fadeUp}
@@ -74,22 +82,33 @@ export default function Partners() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.25 + i * 0.07 }}
               whileHover={{ scale: 1.02, y: -4 }}
-              className="partner-card rounded-2xl h-28 sm:h-36 flex items-center justify-center cursor-pointer"
+              className="partner-card rounded-2xl h-28 sm:h-36 flex items-center justify-center cursor-pointer relative overflow-hidden"
             >
-              <div className="text-center">
-                <p
-                  className="text-lg font-light tracking-wider"
-                  style={{ fontFamily: 'var(--font-cormorant)', color: '#A08060', fontSize: '1.2rem' }}
-                >
-                  Ваш бренд
-                </p>
-                <p
-                  className="text-xs mt-1 tracking-widest uppercase"
-                  style={{ fontFamily: 'var(--font-montserrat)', color: '#C4A882', fontWeight: 300 }}
-                >
-                  Партнёр фестиваля
-                </p>
-              </div>
+              {partner.logo ? (
+                <div className="relative w-[80%] h-[80%] flex items-center justify-center p-4">
+                  <Image 
+                    src={partner.logo} 
+                    alt={partner.name}
+                    fill
+                    className="object-contain opacity-70 hover:opacity-100 transition-opacity duration-300" 
+                  />
+                </div>
+              ) : (
+                <div className="text-center">
+                  <p
+                    className="text-lg font-light tracking-wider"
+                    style={{ fontFamily: 'var(--font-cormorant)', color: '#A08060', fontSize: '1.2rem' }}
+                  >
+                    {partner.name}
+                  </p>
+                  <p
+                    className="text-xs mt-1 tracking-widest uppercase"
+                    style={{ fontFamily: 'var(--font-montserrat)', color: '#C4A882', fontWeight: 300 }}
+                  >
+                    {partner.type}
+                  </p>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>

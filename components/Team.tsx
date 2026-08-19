@@ -20,7 +20,7 @@ const team = [
     id: 3,
     name: 'Алмаз Исмагилов',
     description: 'Оформляет все договоренности в документы и управляет операционными процессами',
-    image: '/images/org-3.jpg',
+    image: '/images/almaz.jpg',
   },
   {
     id: 4,

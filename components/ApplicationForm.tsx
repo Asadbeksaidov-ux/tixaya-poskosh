@@ -11,7 +11,7 @@ interface FormData {
   email: string
   promo: string
   tier: string
-  quantity: string
+  wishes: string
 }
 
 interface FormErrors {
@@ -36,16 +36,16 @@ const inputBase: React.CSSProperties = {
 
 const tierLabels: Record<string, string> = {
   free: 'Входной (0 ₽)',
-  full: 'Полный (15 555 ₽)',
-  vip: 'VIP (55 555 ₽)',
-  premium: 'Премиум (111 111 ₽)',
+  full: 'Полный (7 777 ₽)',
+  vip: 'VIP (39 990 ₽)',
+  premium: 'Премиум (88 888 ₽)',
 }
 
 const tierPrices: Record<string, number> = {
   free: 0,
-  full: 15555,
-  vip: 55555,
-  premium: 111111,
+  full: 7777,
+  vip: 39990,
+  premium: 88888,
 }
 
 export default function ApplicationForm({ selectedTier }: { selectedTier?: string }) {
@@ -55,7 +55,7 @@ export default function ApplicationForm({ selectedTier }: { selectedTier?: strin
     email: '',
     promo: '',
     tier: selectedTier ?? 'full',
-    quantity: '1',
+    wishes: '',
   })
   const [errors, setErrors] = useState<FormErrors>({})
   const [loading, setLoading] = useState(false)
@@ -103,8 +103,12 @@ export default function ApplicationForm({ selectedTier }: { selectedTier?: strin
         return
       }
 
-      setShowModal(true)
-      setForm({ name: '', phone: '', email: '', promo: '', tier: 'full', quantity: '1' })
+      if (data.paymentUrl) {
+        window.location.href = data.paymentUrl
+      } else {
+        setShowModal(true)
+        setForm({ name: '', phone: '', email: '', promo: '', tier: 'full', wishes: '' })
+      }
     } catch {
       setServerError('Ошибка соединения. Проверьте интернет и попробуйте снова.')
     } finally {
@@ -112,9 +116,25 @@ export default function ApplicationForm({ selectedTier }: { selectedTier?: strin
     }
   }
 
-  const basePrice = tierPrices[form.tier] * parseInt(form.quantity || '1')
-  const discount = form.promo === 'ФЕСТИВАЛЬ20' ? 0.2 : 0
-  const finalPrice = basePrice * (1 - discount)
+  const basePrice = tierPrices[form.tier]
+  
+  let discountType = ''
+  const promoUpper = form.promo.trim().toUpperCase()
+  if (['TEST15'].includes(promoUpper)) discountType = '15'
+  if (['TEST30'].includes(promoUpper)) discountType = '30'
+  
+  let finalPrice = basePrice
+  if (discountType === '15') {
+    if (form.tier === 'full') finalPrice = 6660
+    if (form.tier === 'vip') finalPrice = 33900
+    if (form.tier === 'premium') finalPrice = 75555
+  } else if (discountType === '30') {
+    if (form.tier === 'full') finalPrice = 5555
+    if (form.tier === 'vip') finalPrice = 27999
+    if (form.tier === 'premium') finalPrice = 66666
+  }
+
+  const discountAmount = basePrice - finalPrice
 
   return (
     <>
@@ -275,29 +295,23 @@ export default function ApplicationForm({ selectedTier }: { selectedTier?: strin
             </div>
           </div>
 
-          {/* Quantity selector */}
-          <div className="relative">
-            <select
-              id="form-quantity"
-              value={form.quantity || '1'}
-              onChange={(e) => setForm((p) => ({ ...p, quantity: e.target.value }))}
+          {/* Wishes field instead of quantity */}
+          <div className="relative sm:col-span-2">
+            <input
+              id="form-wishes"
+              type="text"
+              placeholder="Пожелания (Если вы покупаете больше 1 билета, укажите это здесь)"
+              value={form.wishes}
+              onChange={(e) => setForm((p) => ({ ...p, wishes: e.target.value }))}
               style={{
                 ...inputBase,
                 paddingLeft: '16px',
-                appearance: 'none',
-                cursor: 'pointer',
               }}
-              aria-label="Количество билетов"
-            >
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
-                <option key={num} value={num}>
-                  {num} {num === 1 ? 'билет' : num < 5 ? 'билета' : 'билетов'}
-                </option>
-              ))}
-            </select>
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#A08060]">
-              ▼
-            </div>
+              aria-label="Пожелания"
+            />
+            <p className="text-[11px] mt-1.5 ml-1 font-light opacity-80" style={{ fontFamily: 'var(--font-montserrat)', color: '#3D1F0A' }}>
+              Если вы покупаете больше 1 билета, то укажите это в поле «пожелания» и наша служба заботы свяжется с вами.
+            </p>
           </div>
         </div>
 
@@ -305,13 +319,13 @@ export default function ApplicationForm({ selectedTier }: { selectedTier?: strin
         {basePrice > 0 && (
           <div className="mt-4 p-4 rounded-xl flex flex-col gap-2" style={{ background: 'rgba(210,135,68,0.05)', border: '1px solid rgba(210,135,68,0.2)' }}>
             <div className="flex justify-between items-center text-[#3D1F0A]" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              <span className="text-sm">Стоимость билетов ({form.quantity} шт):</span>
+              <span className="text-sm">Стоимость билета (1 шт):</span>
               <span className="font-medium">{basePrice.toLocaleString('ru-RU')} ₽</span>
             </div>
-            {discount > 0 && (
+            {discountAmount > 0 && (
               <div className="flex justify-between items-center text-green-600" style={{ fontFamily: 'var(--font-montserrat)' }}>
-                <span className="text-sm">Скидка по промокоду (20%):</span>
-                <span className="font-medium">-{(basePrice * discount).toLocaleString('ru-RU')} ₽</span>
+                <span className="text-sm">Скидка по промокоду:</span>
+                <span className="font-medium">-{discountAmount.toLocaleString('ru-RU')} ₽</span>
               </div>
             )}
             <div className="w-full h-px my-1" style={{ background: 'rgba(196,168,130,0.3)' }} />
