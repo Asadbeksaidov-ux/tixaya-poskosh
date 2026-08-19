@@ -98,7 +98,7 @@ export default function Header() {
                 <a href="https://www.instagram.com/tihaya_roskosh_fest?igsh=bDgxcG00d3A2ZDc1" target="_blank" rel="noopener noreferrer" className="text-[#3D1F0A] hover:text-[#D28744] transition-colors" aria-label="Instagram">
                   <InstagramIcon size={16} />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#3D1F0A] hover:text-[#D28744] transition-colors" aria-label="Telegram">
+                <a href="https://t.me/tixaya_roskosh" target="_blank" rel="noopener noreferrer" className="text-[#3D1F0A] hover:text-[#D28744] transition-colors" aria-label="Telegram">
                   <TelegramIcon size={18} />
                 </a>
                 <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#3D1F0A] hover:text-[#D28744] transition-colors" aria-label="Max">
@@ -144,7 +144,7 @@ export default function Header() {
                 <a href="https://www.instagram.com/tihaya_roskosh_fest?igsh=bDgxcG00d3A2ZDc1" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-[rgba(210,135,68,0.3)] flex items-center justify-center text-[#3D1F0A] hover:bg-[rgba(210,135,68,0.1)] hover:text-[#D28744] transition-colors" aria-label="Instagram">
                   <InstagramIcon size={14} />
                 </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-[rgba(210,135,68,0.3)] flex items-center justify-center text-[#3D1F0A] hover:bg-[rgba(210,135,68,0.1)] hover:text-[#D28744] transition-colors" aria-label="Telegram">
+                <a href="https://t.me/tixaya_roskosh" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-[rgba(210,135,68,0.3)] flex items-center justify-center text-[#3D1F0A] hover:bg-[rgba(210,135,68,0.1)] hover:text-[#D28744] transition-colors" aria-label="Telegram">
                   <TelegramIcon size={14} />
                 </a>
                 <a href="#" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-[rgba(210,135,68,0.3)] flex items-center justify-center text-[#3D1F0A] hover:bg-[rgba(210,135,68,0.1)] hover:text-[#D28744] transition-colors" aria-label="Max">
